@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import pokemonReducer from './pokemonSlice'; 
+
 export const store = configureStore({
-  reducer: {
-    // Aquí se agregarán  pokemons, carrito, favoritos
-  },
+  reducer: {
+    pokemons: pokemonReducer,
+  },
 });
 
 export default store;

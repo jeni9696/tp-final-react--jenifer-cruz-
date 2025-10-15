@@ -1,18 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavorito } from '../store/favoritosSlice'; 
 
 function PokemonCard({ pokemonData }) {
   
+  const dispatch = useDispatch();
+
+  const isFavorite = useSelector(state => 
+    state.favoritos.list.some(item => item.id === pokemonData.id)
+  );
 
   const pokemonId = pokemonData.id;
-  
-  
   const idDisplay = String(pokemonId).padStart(3, '0');
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`;
 
+  const handleToggleFavorite = () => {
+    dispatch(toggleFavorito(pokemonData));
+  };
 
-  const handleAction = (actionType) => {
-    console.log(`${actionType} clickeada para Pokémon ID: ${pokemonId}`);
+  const handleCartAction = () => {
+    console.log(`CARRITO clickeada para Pokémon ID: ${pokemonId}`);
   };
 
   return (
@@ -50,13 +58,19 @@ function PokemonCard({ pokemonData }) {
       <div className="card-actions" style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginTop: '15px' }}>
         
         <button 
-          onClick={() => handleAction('FAVORITO')} 
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'gray' }}>
-          🤍
+          onClick={handleToggleFavorite} 
+          style={{ 
+            background: 'none', 
+            border: 'none', 
+            cursor: 'pointer', 
+            fontSize: '1.5em',
+            color: isFavorite ? 'red' : 'gray' 
+          }}>
+          {isFavorite ? '❤️' : '🤍'} 
         </button>
         
         <button 
-          onClick={() => handleAction('CARRITO')} 
+          onClick={handleCartAction} 
           style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#333' }}>
           🛒
         </button>

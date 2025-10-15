@@ -1,14 +1,11 @@
-
-
 import React from 'react';
 
-function Tienda() {
+function Home() {
   return (
-    <div>
-      <h2>Página de la Tienda Pokémon</h2>
-      <p>Aquí se cargará el listado de Pokémons desde la PokeAPI.</p>
+    <div style={{ padding: '20px' }}>
+      <h2>¡Bienvenido a la Pokémon Shop!</h2>
+      <p>Aquí irá el banner principal y la explicación del proyecto.</p>
     </div>
   );
 }
-
-export default Tienda;
+export default Home;

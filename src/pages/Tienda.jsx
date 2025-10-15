@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPokemons } from '../store/pokemonSlice';
+import PokemonCard from '../components/PokemonCard';
 
 function Tienda() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function Tienda() {
   if (error) {
     return <h2 style={{ color: 'red', padding: '20px' }}>Error: {error}</h2>;
   }
+  if (list.length === 0 && !isLoading) {
+    return <h2 style={{ padding: '20px', textAlign: 'center' }}>No hay Pokémons disponibles.</h2>;
+  }
 
   return (
     <div className="tienda-container" style={{ padding: '20px' }}>
@@ -28,17 +32,15 @@ function Tienda() {
       
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(4, 1fr)', 
-        gap: '10px' 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+        gap: '20px' 
       }}>
-          {list.map((pokemon, index) => (
-            <div key={index} style={{ border: '1px solid #ccc', padding: '10px', textAlign: 'center' }}>
-              {pokemon.name.toUpperCase()} 
-            </div>
-          ))}
+        {list.map((pokemon) => (
+          <PokemonCard key={pokemon.name} pokemonData={pokemon} />
+        ))}
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+      <div style={{ textAlign: 'center', marginTop: '40px' }}>
         {isLoading ? (
           <p>Cargando más Pokémons...</p>
         ) : nextUrl ? (

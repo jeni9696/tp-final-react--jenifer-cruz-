@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorito } from '../store/favoritosSlice'; 
+import { addToCart } from '../store/carritoSlice'; 
 
 function PokemonCard({ pokemonData }) {
   
@@ -11,17 +12,18 @@ function PokemonCard({ pokemonData }) {
     state.favoritos.list.some(item => item.id === pokemonData.id)
   );
 
+  const handleToggleFavorite = () => {
+    dispatch(toggleFavorito(pokemonData));
+  };
+  
+  const handleAddToCart = () => {
+    dispatch(addToCart(pokemonData));
+    console.log(`Pokémon ${pokemonData.name} añadido al carrito.`);
+  };
+
   const pokemonId = pokemonData.id;
   const idDisplay = String(pokemonId).padStart(3, '0');
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`;
-
-  const handleToggleFavorite = () => {
-    dispatch(toggleFavorito(pokemonData));
-  };
-
-  const handleCartAction = () => {
-    console.log(`CARRITO clickeada para Pokémon ID: ${pokemonId}`);
-  };
 
   return (
     <div 
@@ -70,7 +72,7 @@ function PokemonCard({ pokemonData }) {
         </button>
         
         <button 
-          onClick={handleCartAction} 
+          onClick={handleAddToCart} 
           style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#333' }}>
           🛒
         </button>

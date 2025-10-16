@@ -6,7 +6,7 @@ function Footer() {
       
      
       <p style={{ margin: '5px 0', color: 'var(--color-light)' }}>
-        &copy; {new Date().getFullYear()} Pokémon Shop - TP Final Integrador UTN.BA
+        &copy; {new Date().getFullYear()} Pokémon Shop - TP Final Integrador UTN.BA  proyecto creado por Cruz Jenifer 
       </p>
       
     

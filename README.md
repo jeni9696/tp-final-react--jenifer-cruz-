@@ -66,5 +66,5 @@ La aplicación puede desplegarse fácilmente en GitHub Pages.
    ```
 
 El repositorio oficial se encuentra en: [https://github.com/jeni9696/tp-final-react-jenifer-cruz-](https://github.com/jeni9696/tp-final-react-jenifer-cruz-)
-
+para ver una visualizacion rapida -> [https://jeni9696.github.io/tp-final-react--jenifer-cruz-/#/]
 ---

@@ -116,7 +116,7 @@ function PokemonDetalle() {
                 <button
                     onClick={handleToggleFavorite}
                     style={{ color: isFavorite ? 'red' : 'gray', border: 'none', background: 'none', cursor: 'pointer', fontSize: '1.5em' }}>
-                    {isFavorite ? " Quitar" : "❤️ Favoritos"}
+                    {isFavorite ? "🤍 Quitar" : "❤️ Favoritos"}
                 </button>
                 <button
                     onClick={handleAddToCart}

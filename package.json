@@ -1,10 +1,13 @@
 {
-  "name": "tp-final-react--jenifer-cruz-",
+        "name": "tp-final-react--jenifer-cruz-",
   "private": true,
   "version": "0.0.0",
+
   "homepage": "https://jeni9696.github.io/tp-final-react--jenifer-cruz-",
+  
   "type": "module",
   "scripts": {
+  
     "predeploy": "npm run build", 
     "deploy": "gh-pages -d dist",
     
@@ -37,4 +40,5 @@
     "globals": "^16.4.0",
     "vite": "^7.1.7"
   }
+  
 }

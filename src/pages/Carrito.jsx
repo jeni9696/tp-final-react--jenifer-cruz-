@@ -25,7 +25,7 @@ function Carrito() {
 
   if (carritoItems.length === 0) {
     return (
-      <div style={{ padding: '40px', textAlign: 'center', maxWidth: '600px', margin: '50px auto', backgroundColor: 'white', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+      <div style={{ padding: '40px', textAlign: 'center', maxWidth: '600px', margin: '50px auto', backgroundColor: 'rgba(0, 0, 0, 0.7)', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
         <h2>Tu Carrito está Vacío 🛒</h2>
         <p>Añade algunos Pokémon desde la Tienda para empezar tu compra.</p>
       </div>
@@ -33,12 +33,12 @@ function Carrito() {
   }
 
   return (
-    <div style={{ padding: '20px', maxWidth: '900px', margin: '0 auto', backgroundColor: 'white', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+    <div style={{ padding: '20px', maxWidth: '900px', margin: '0 auto', backgroundColor: 'rgba(0, 0, 0, 0.7)', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
       <h2>Resumen del Carrito ({carritoItems.length} ítems)</h2>
 
       <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
         <thead>
-          <tr style={{ borderBottom: '2px solid #ccc', backgroundColor: '#f5f5f5' }}>
+          <tr style={{ borderBottom: '2px solid #ccc', backgroundColor: 'grease' }}>
             <th style={{ padding: '10px', textAlign: 'left' }}>Producto</th>
             <th style={{ padding: '10px' }}>Precio Unitario</th>
             <th style={{ padding: '10px' }}>Cantidad</th>
@@ -56,7 +56,7 @@ function Carrito() {
               </td>
 
               <td style={{ padding: '10px', textAlign: 'center' }}>
-                ₽ {item.precioUnitario}.00
+                $ {item.precioUnitario}.00
               </td>
 
               <td style={{ padding: '10px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
@@ -74,7 +74,7 @@ function Carrito() {
               </td>
 
               <td style={{ padding: '10px', textAlign: 'center', fontWeight: 'bold' }}>
-                ₽ {item.precioUnitario * item.cantidad}.00
+                $ {item.precioUnitario * item.cantidad}.00
               </td>
 
               <td style={{ padding: '10px', textAlign: 'center' }}>
@@ -90,7 +90,7 @@ function Carrito() {
       </table>
 
       <div style={{ marginTop: '20px', textAlign: 'right', borderTop: '2px solid #ccc', paddingTop: '15px' }}>
-        <h3 style={{ fontSize: '1.5em' }}>Total: ₽ {total}.00</h3>
+        <h3 style={{ fontSize: '1.5em' }}>Total: $ {total}.00</h3>
         <button 
           onClick={handleClearCart} 
           style={{ padding: '10px 20px', backgroundColor: '#e74c3c', color: 'white', border: 'none', cursor: 'pointer', borderRadius: '5px', marginRight: '10px' }}>

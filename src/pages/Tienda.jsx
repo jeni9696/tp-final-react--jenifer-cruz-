@@ -27,7 +27,7 @@ function Tienda() {
   }
 
   return (
-    <div className="tienda-container" style={{ padding: '20px' }}>
+    <div className="tienda-container" style={{ padding: '20px' ,backgroundColor: 'rgba(0, 23, 15, 0.6)'}}>
       <h2>Tienda Pokémon (Pokémons cargados: {list.length})</h2>
       
       <div style={{ 

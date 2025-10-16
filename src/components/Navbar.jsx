@@ -1,20 +1,20 @@
-// src/components/Navbar.jsx
-
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PokemonLogo from '../img/logo.png'; 
 
 function Navbar() { 
   return (
-    <nav style={{ 
-        display: 'flex', 
-        justifyContent: 'space-around', 
-        padding: '10px', 
-        backgroundColor: '#B4C8FF'
-      }}>
-      <Link to="/" style={{ color: '#333', textDecoration: 'none', fontWeight: 'bold' }}>Home</Link>
-      <Link to="/tienda" style={{ color: '#333', textDecoration: 'none' }}>Tienda</Link>
-      <Link to="/favoritos" style={{ color: '#333', textDecoration: 'none' }}>Favoritos</Link>
-      <Link to="/carrito" style={{ color: '#333', textDecoration: 'none' }}>Carrito</Link>
+    <nav className="navbar-container">
+      <Link to="/" className="nav-brand">
+         <img src={PokemonLogo} alt="Pokémon Shop Logo" className="nav-logo" />
+      </Link>
+
+      <div className="nav-links">
+        <Link to="/" className="nav-link">Home</Link>
+        <Link to="/tienda" className="nav-link">Tienda</Link>
+        <Link to="/favoritos" className="nav-link">Favoritos</Link>
+        <Link to="/carrito" className="nav-link">Carrito</Link>
+      </div>
     </nav>
   );
 }

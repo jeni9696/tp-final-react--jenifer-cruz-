@@ -67,7 +67,7 @@ function PokemonDetalle() {
   const dummyPrice = 500; 
 
   return (
-    <main style={{ padding: '40px', maxWidth: '800px', margin: '0 auto', backgroundColor: 'white', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+    <main style={{ padding: '40px', maxWidth: '800px', margin: '0 auto', backgroundColor: 'rgba(0, 0, 0, 0.7)', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
       
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
         <button 
@@ -91,7 +91,7 @@ function PokemonDetalle() {
             <h3>Tipos</h3>
             <div style={{ display: 'flex', gap: '10px' }}>
                 {pokemonData.types.map((type) => (
-                    <span key={type.type.name} style={{ padding: '5px 10px', backgroundColor: '#B4C8FF', borderRadius: '5px', textTransform: 'uppercase', fontSize: '0.9em' }}>
+                    <span key={type.type.name} style={{ padding: '5px 10px',backgroundColor: 'rgba(0, 0, 0, 0.7)', borderRadius: '5px', textTransform: 'uppercase', fontSize: '0.9em' }}>
                         {type.type.name}
                     </span>
                 ))}
@@ -110,7 +110,7 @@ function PokemonDetalle() {
 
             <h3 style={{ marginTop: '20px' }}>Precio y Acciones</h3>
              <p style={{ fontSize: '1.5em', fontWeight: 'bold' }}>
-                 {`₽ ${dummyPrice}.00`}
+                 {`$ ${dummyPrice}.00`}
              </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '15px' }}>
                 <button
@@ -120,7 +120,7 @@ function PokemonDetalle() {
                 </button>
                 <button
                     onClick={handleAddToCart}
-                    style={{ padding: '10px 20px', backgroundColor: '#B4C8FF', border: 'none', cursor: 'pointer', borderRadius: '4px' }}>
+                    style={{ padding: '10px 20px', backgroundColor: 'rgba(133, 136, 133, 0.7)', border: 'none', cursor: 'pointer', borderRadius: '4px' }}>
                     🛒 Agregar al Carrito
                 </button>
             </div>

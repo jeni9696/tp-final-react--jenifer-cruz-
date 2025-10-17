@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../store/carritoSlice'; 
-import { toggleFavorito } from '../store/favoritosSlice';
 
+import { toggleFavorito } from '../store/favoritosSlice';
+import { addToCart, removeFromCart } from '../store/carritoSlice';
 function PokemonDetalle() {
   const { pokemonId } = useParams(); 
   const navigate = useNavigate();
@@ -15,7 +15,9 @@ function PokemonDetalle() {
   const isFavorite = useSelector(state => 
     pokemonData ? state.favoritos.list.some(item => item.id === pokemonData.id) : false
   );
-
+const isInCart = useSelector(state => 
+    pokemonData ? state.carrito.list.some(item => item.pokemon.id === pokemonData.id) : false
+  );
   useEffect(() => {
     if (!pokemonId) return;
 
@@ -42,10 +44,18 @@ function PokemonDetalle() {
     fetchDetail();
   }, [pokemonId]); 
 
-
-  const handleAddToCart = () => {
-    if (pokemonData) dispatch(addToCart(pokemonData));
+const handleCartToggle = () => {
+    if (!pokemonData) return;
+    
+    if (isInCart) {
+        // Si está: Quitar del carrito
+        dispatch(removeFromCart(pokemonData.id)); 
+    } else {
+        // Si no está: Añadir 
+        dispatch(addToCart(pokemonData)); 
+    }
   };
+ 
   
   const handleToggleFavorite = () => {
     if (pokemonData) dispatch(toggleFavorito(pokemonData));
@@ -119,10 +129,17 @@ function PokemonDetalle() {
                     {isFavorite ? "🤍 Quitar" : "❤️ Favoritos"}
                 </button>
                 <button
-                    onClick={handleAddToCart}
-                    style={{ padding: '10px 20px', backgroundColor: 'rgba(133, 136, 133, 0.7)', border: 'none', cursor: 'pointer', borderRadius: '4px' }}>
-                    🛒 Agregar al Carrito
-                </button>
+                    onClick={handleCartToggle} 
+                    style={{ padding: '10px 20px', 
+                                   backgroundColor: isInCart ? 'var(--color-red)' : 'var(--color-accent)', 
+                                   border: 'none', 
+                                   cursor: 'pointer', 
+                                   borderRadius: '4px', 
+                                   color: 'var(--color-dark)', 
+                                   fontWeight: 'bold' 
+                                }}>
+                    {isInCart ? "❌ Quitar" : "🛒 Agregar al Carrito"} 
+                </button>
             </div>
         </div>
       </div>

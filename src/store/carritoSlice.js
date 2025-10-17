@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const calcularPrecioIntegrado = (pokemonData) => {
+export const calcularPrecioIntegrado = (pokemonData) => {
     if (!pokemonData || !pokemonData.moves) return 10; 
 
     const totalMoves = pokemonData.moves.length;

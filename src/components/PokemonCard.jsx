@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorito } from '../store/favoritosSlice'; 
-import { addToCart } from '../store/carritoSlice'; 
-
+import { addToCart, removeFromCart, calcularPrecioIntegrado } from '../store/carritoSlice';
 function PokemonCard({ pokemonData }) {
   
   const dispatch = useDispatch();
@@ -12,18 +11,27 @@ function PokemonCard({ pokemonData }) {
     state.favoritos.list.some(item => item.id === pokemonData.id)
   );
 
+const isInCart = useSelector(state => 
+    state.carrito.list.some(item => item.pokemon.id === pokemonData.id)
+  );
   const handleToggleFavorite = () => {
     dispatch(toggleFavorito(pokemonData));
   };
   
-  const handleAddToCart = () => {
-    dispatch(addToCart(pokemonData));
-    console.log(`Pokémon ${pokemonData.name} añadido al carrito.`);
+ const handleCartAction = () => {
+    const pokemonId = pokemonData.id;
+
+    if (isInCart) {
+      dispatch(removeFromCart(pokemonId));
+    } else {
+      dispatch(addToCart(pokemonData));
+    }
   };
 
   const pokemonId = pokemonData.id;
   const idDisplay = String(pokemonId).padStart(3, '0');
   const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`;
+const price = calcularPrecioIntegrado(pokemonData);
 
   return (
     <div 
@@ -32,6 +40,7 @@ function PokemonCard({ pokemonData }) {
         border: '2px solid var(--color-mid)', /* Borde más visible */
         borderRadius: '15px', 
         padding: '20px', 
+
        backgroundColor: 'rgba(0, 0, 0, 0.7)',
         boxShadow: '0 8px 20px rgba(0,0,0,0.8)', /* Sombra profunda */
         textAlign: 'center',
@@ -75,24 +84,22 @@ function PokemonCard({ pokemonData }) {
           }}>
           {isFavorite ? '❤️' : '🤍'} 
         </button>
-        
         <button 
-          onClick={handleAddToCart} 
-          style={{ 
-            padding: '8px 15px', 
-            backgroundColor: 'var(--color-accent)', 
-            color: 'var(--color-dark)', 
-            border: 'none', 
-            cursor: 'pointer', 
-            borderRadius: '5px',
-            fontWeight: 'bold',
-            transition: 'background-color 0.3s, box-shadow 0.3s'
-          }}
-          onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 10px var(--color-accent)'}
-          onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-        >
-          🛒 Añadir
-        </button>
+          onClick={handleCartAction} 
+          style={{ 
+            padding: '8px 15px',
+            backgroundColor: isInCart ? 'var(--color-red)' : 'var(--color-accent)',
+            color: 'var(--color-dark)',
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            transition: 'all 0.3s'
+          }}
+        >
+          {isInCart ? '❌ Quitar' : '🛒 Añadir'}
+        </button>
+       
       </div>
     </div>
   );
